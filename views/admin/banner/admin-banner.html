@@ -1,0 +1,165 @@
+<div class="box-banner">
+  <h2 class="title">Quản lí banner</h2>
+  <div class="box-banner-body row">
+    <div class="col-md-12">
+      <div class="box-banner-body-slider">
+        <h4>Slider show</h4>
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+              <img src="" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+              <img src="" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+              <img src="" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <button class="btn btn-outline-success">Cập nhập</button>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="box-banner-body-image-1">
+        <p>Ảnh 1</p>
+        <input type="file" id="banner-file-1" class="d-none input-file-image" />
+        <label for="banner-file-1">
+          <img
+            src="./images/banner1.webp"
+            alt=""
+            class="show-file-image-input"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="box-banner-body-image-1">
+        <p>Ảnh 2</p>
+
+        <input type="file" id="banner-file-2" class="d-none input-file-image" />
+        <label for="banner-file-2">
+          <img
+            src="./images/banner1.webp"
+            alt=""
+            class="show-file-image-input"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="box-banner-body-image-1">
+        <p>Ảnh 3</p>
+
+        <input type="file" id="banner-file-3" class="d-none input-file-image" />
+        <label for="banner-file-3">
+          <img
+            src="./images/banner1.webp"
+            alt=""
+            class="show-file-image-input"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="box-banner-body-image-1">
+        <p>Ảnh 4</p>
+
+        <input type="file" id="banner-file-4" class="d-none input-file-image" />
+        <label for="banner-file-4">
+          <img
+            src="./images/banner2.webp"
+            alt=""
+            class="show-file-image-input"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const dataImg = [
+    {
+      id: "1",
+      url: "./images/banner1.webp",
+    },
+    {
+      id: "2",
+      url: "./images/banner2.webp",
+    },
+    {
+      id: "3",
+      url: "./images/banner3.webp",
+    },
+    {
+      id: "4",
+      url: "./images/banner4.jpg",
+    },
+  ];
+
+  const carouselItem = document.querySelectorAll(".carousel-item img");
+  const inputFile = document.querySelectorAll(".input-file-image");
+  const showFileImage = document.querySelectorAll(".show-file-image-input");
+  function showSlider() {
+    carouselItem.forEach((item, index) => {
+      item.src = `${dataImg[index].url}`;
+    });
+  }
+  showSlider();
+  inputFile.forEach((item, index) => {
+    item.addEventListener("change", (e) => {
+      showFileImage[index].src = URL.createObjectURL(e.target.files[0]);
+      dataImg[index].url = URL.createObjectURL(e.target.files[0]);
+      showSlider();
+    });
+  });
+</script>

@@ -1,0 +1,100 @@
+
+
+      <!-- box -->
+      <div class="box-content">
+        <div class="box-revenue">
+          <h2 class="title">Doanh thu</h2>
+          <div class="box-revenue-body row">
+            <div
+              class="col-md-12"
+              style="
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #081e45;
+                border-radius: 10px;
+              "
+            >
+              <canvas
+                id="myChart"
+                width="400"
+                height="120"
+                aria-label="Hello ARIA World"
+                role="img"
+              ></canvas>
+            </div>
+            <div class="box-revenue-body-chart"></div>
+          </div>
+        </div>
+      
+    <script>
+      const ctx = document.getElementById("myChart");
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: [
+            "Red",
+            "Blue",
+            "Yellow",
+            "Green",
+            "Purple",
+            "Orange",
+            "Red",
+            "Blue",
+            "Yellow",
+            "Green",
+            "Purple",
+            "Orange",
+            "Red",
+            "Blue",
+            "Yellow",
+            "Green",
+            "Purple",
+            "Orange",
+          ],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [
+                12, 19, 3, 5, 2, 3, 4, 5, 20, 56, 12, 34, 52, 32, 5, 2, 56, 12,
+                34, 52, 32,
+              ],
+              borderWidth: 1,
+              backgroundColor: "#fff",
+              borderColor: "#fff",
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: "transparent",
+              },
+              border: {
+                color: "#fff",
+              },
+            },
+            x: {
+              grid: {
+                color: "transparent",
+              },
+              border: {
+                color: "#fff",
+              },
+            },
+          },
+          layout: {
+            padding: 20,
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "Custom Chart Title",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
