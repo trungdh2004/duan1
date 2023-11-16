@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a href="/duan1_Nike/index.php">
+            <div class="logo">
+              <svg
+                aria-hidden="true"
+                class="pre-logo-svg"
+                focusable="false"
+                viewBox="0 0 24 24"
+                role="img"
+                width="60px"
+                height="60px"
+                fill="none"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M21 8.719L7.836 14.303C6.74 14.768 5.818 15 5.075 15c-.836 0-1.445-.295-1.819-.884-.485-.76-.273-1.982.559-3.272.494-.754 1.122-1.446 1.734-2.108-.144.234-1.415 2.349-.025 3.345.275.2.666.298 1.147.298.386 0 .829-.063 1.316-.19L21 8.719z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </a>
+          <form action="" class="search" method="post">
+            <input type="text" name="search" />
+            <button type="submit" name="btnSearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+          <div class="menu">
+            <ul>
+              <li><a href="/duan1_Nike/index.php">Trang chủ</a></li>
+              <li><a href="/duan1_Nike/index.php?act=product">Sản phẩm</a></li>
+              <li>
+                <a href="/duan1_Nike/index.php" class="cart">
+                  <span>1</span>
+                  <i class="fa-solid fa-basket-shopping"></i
+                ></a>
+              </li>
+            </ul>
+            <div>
+              <div class="dropdown">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle btn-sm"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                ></button>
+
+                <ul class="dropdown-menu gap-2">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="/duan1_Nike/index.php?act=userInfo"
+                      >Thông tin cá nhân</a
+                    >
+                  </li>
+
+                  <li>
+                    <form action="" method="post">
+                      <button
+                        type="submit"
+                        name="btnlogout"
+                        class="btn btn-danger btn-sm"
+                        style="width: 100%"
+                      >
+                        Đăng xuất
+                      </button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="box-content">
+        <div class="box-product-deltail row">
+          <!-- product img -->
+          <div class="col-8 box-product-deltail-img">
+            <img src="./images/1699761247tenis1.webp" alt="" />
+          </div>
+
+          <!-- product detail  -->
+          <div class="col-3 box-product-deltail-body">
+            <div class="box-product-deltail-body-title">
+              <h2>Nike</h2>
+            </div>
+            <br />
+            <div class="box-product-deltail-body-price">
+              <p>Giá : 1200000đ</p>
+              <span>Giày dc sản xuất tại Việt nam</span>
+            </div>
+
+            <!-- form xử lí color và size -->
+            <form action="" method="post" class="needs-validation" novalidate>
+              <br />
+
+              <div class="box-product-deltail-body-color">
+                <p>Color :</p>
+                <div class="box-product-deltail-body-color-list">
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-color"
+                      id="product-color-1"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-color-1"> </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-color"
+                      id="product-color-2"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-color-2"> </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-color"
+                      id="product-color-3"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-color-3"> </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-color"
+                      id="product-color-4"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-color-4"> </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-color"
+                      id="product-color-5"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-color-5"> </label>
+                  </div>
+
+                  <div id="invalidCheck3Feedback" class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+              </div>
+              <br />
+
+              <div class="box-product-deltail-body-size">
+                <p>Size :</p>
+                <div class="box-product-deltail-body-size-list">
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-size"
+                      id="product-size-1"
+                      disabled
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-size-1">11 </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-size"
+                      id="product-size-2"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-size-2"> 12</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-size"
+                      id="product-size-3"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-size-3">13 </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-size"
+                      id="product-size-4"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-size-4">14 </label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="btn-size"
+                      id="product-size-5"
+                      class="form-check-input"
+                      required
+                    />
+                    <label for="product-size-5">15 </label>
+                  </div>
+                  <div id="invalidCheck3Feedback" class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="box-product-deltail-body-submit">
+                <button class="btn-cart" type="submit">Thêm giỏ hàng</button>
+              </div>
+              <br />
+              <div class="box-product-deltail-body-description">
+                <h6>Mô tả :</h6>
+                <p>
+                  Sự rạng rỡ vẫn tồn tại trong Nike Air Force 1 '07, phiên bản
+                  bóng rổ nguyên bản mang đến sự thay đổi mới mẻ về những gì bạn
+                  biết rõ nhất: lớp phủ được khâu bền, lớp hoàn thiện gọn gàng
+                  và lượng đèn flash hoàn hảo giúp bạn tỏa sáng. Sự rạng rỡ vẫn
+                  tồn tại trong Nike Air Force 1 '07, phiên bản bóng rổ nguyên
+                  bản mang đến sự thay đổi mới mẻ về những gì bạn biết rõ nhất:
+                  lớp phủ được khâu bền, lớp hoàn thiện gọn gàng và lượng đèn
+                  flash hoàn hảo giúp bạn tỏa sáng. Sự rạng rỡ vẫn tồn tại trong
+                  Nike Air Force 1 '07, phiên bản bóng rổ nguyên bản mang đến sự
+                  thay đổi mới mẻ về những gì bạn biết rõ nhất: lớp phủ được
+                  khâu bền, lớp hoàn thiện gọn gàng và lượng đèn flash hoàn hảo
+                  giúp bạn tỏa sáng. Sự rạng rỡ vẫn tồn tại trong Nike Air Force
+                  1 '07, phiên bản bóng rổ nguyên bản mang đến sự thay đổi mới
+                  mẻ về những gì bạn biết rõ nhất: lớp phủ được khâu bền, lớp
+                  hoàn thiện gọn gàng và lượng đèn flash hoàn hảo giúp bạn tỏa
+                  sáng.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <br />
+        <div class="box-comment">hihihi</div>
+
+        <div class="box-product-similar"></div>
+      </div>
+    </main>
+
+    <script>
+      (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>

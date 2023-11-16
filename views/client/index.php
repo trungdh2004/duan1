@@ -1,7 +1,10 @@
 <?php 
     if($sessionUserId) {
         $userInfoSesstion = get_one_pdo("user",$sessionUserId);
+        $cartUserSesstion = getCartUser($sessionUserId);
     }
+
+
 
     include "./views/client/layout/header.php";
 
@@ -10,6 +13,9 @@
         switch($_GET['act']) {
             case "product":
                 include "./views/client/routes/product.php";
+                break;
+            case "productDetail":
+                include "./views/client/routes/productDetail.php";
                 break;
             case "userInfo":
                 include "./views/client/routes/userInfo.php";

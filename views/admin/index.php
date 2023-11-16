@@ -2,6 +2,12 @@
 
 
     include "./views/admin/sidebar.php";
+    if(!$sessionUserId) {
+        echo '<script>
+            window.location = "/duan1_Nike/index.php"
+        </script>';
+        return;
+    }
 
     if(isset($_GET['act'])) {
 

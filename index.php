@@ -8,6 +8,8 @@
     include "./controllers/colorController.php";
     include "./controllers/cateController.php";
     include "./controllers/productController.php";
+    include "./controllers/roomChatController.php";
+    include "./controllers/cartController.php";
     include "./controllers/toast.php";
 
     $sessionUserId = null;

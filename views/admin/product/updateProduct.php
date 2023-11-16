@@ -58,13 +58,13 @@
       >
         <option selected disabled value="">Mời chọn...</option>
         <option value="1" <?php 
-            if($productOneUpdate['quantily'] == 1) {
+            if($productOneUpdate['ishot'] == 1) {
                 echo 'selected';
             }
         ?>>Có</option>
         <option value="0" 
             <?php 
-                if($productOneUpdate['quantily'] == 0) {
+                if($productOneUpdate['ishot'] == 0) {
                     echo 'selected';
                 }
             ?>

@@ -1,8 +1,15 @@
 <?php 
     if(isset($_GET['method'])) {
-        if(isset($_GET['id'])) {
-            include "./views/admin/product/updateProduct.php";
+        switch ($_GET['method']) {
+            case 'update':
+                include "./views/admin/product/updateProduct.php";
+                break;
+            case 'deleted':
+                include "./views/admin/product/deletedProduct.php";
+                break;
+
         }
+        
     }else {
         include "./views/admin/product/tableProduct.php";
     }

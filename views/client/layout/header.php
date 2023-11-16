@@ -25,7 +25,26 @@
     <link rel="stylesheet" href="./style/style.css" />
   </head>
   <body>
-    
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <img src="./images/logo.png" style="width:20px;" class="rounded me-2" alt="...">
+          <strong class="me-auto">Nike</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          
+        </div>
+      </div>
+    </div>
+    <script>
+      const toastLiveExample = document.getElementById('liveToast')
+      const toastBody = document.querySelector('.toast-body')
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        
+
+    </script>
+
     <header>
 
       <div class="container">
@@ -62,7 +81,7 @@
               <li><a href="/duan1_Nike/index.php">Trang chủ</a></li>
               <li><a href="/duan1_Nike/index.php?act=product">Sản phẩm</a></li>
               <li>
-                <a href="/duan1_Nike/index.php" class="cart">
+                <a href="/duan1_Nike/index.php?act=cart" class="cart">
                   <span>1</span>
                   <i class="fa-solid fa-basket-shopping"></i
                 ></a>
@@ -144,3 +163,10 @@
       </div>
     </header>
     <main>
+
+    <?php 
+      if(isset($_POST['btnlogout'])) {
+        session_destroy();
+        echo "<script>window.location = '/duan1_Nike/index.php'</script>";
+      }
+    ?>

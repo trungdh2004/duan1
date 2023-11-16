@@ -16,9 +16,9 @@
 
         $image_name = time().$image['name'];
 
-        move_uploaded_file($image['tmp_name'], "../../images".$image_name);
+        move_uploaded_file($image['tmp_name'], "../../images/".$image_name);
 
-        $sql = "INSERT INTO `product`( `title`, `price`, `description`, `ishot`, `cateId`, `sizeId`, `colorId`,`image`) VALUES ('$title','$price','$desc','$hot','$cate','$sizeId','$colorId','$image_name')";
+        $sql = "INSERT INTO `product`( `title`, `price`, `description`,`quantily`, `ishot`, `cateId`, `sizeId`, `colorId`,`image`) VALUES ('$title','$price','$desc',' $quantily','$hot','$cate','$sizeId','$colorId','$image_name')";
 
 
         $result = prepareSql($sql);

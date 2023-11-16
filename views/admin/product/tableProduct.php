@@ -1,5 +1,10 @@
 <div class="box-product">
-  <h2 class="title">Sản phẩm</h2>
+  <div class="title d-flex w-full justify-content-lg-between">
+    <span class="">Kho sản phẩm</span>
+    <a href="/duan1_Nike/index.php?layout=dashboard&act=product&method=deleted">
+    <button class="btn btn-outline-danger">Kho xóa</button>
+    </a>
+  </div>
   <div class="box-product-table">
     <table class="table table-bordered">
       <thead>
@@ -8,11 +13,12 @@
           <th scope="col">Tên giày</th>
           <th scope="col">Ảnh</th>
           <th scope="col">Giá</th>
-          <th scope="col" style="width: 100px">Lượt xem</th>
-          <th scope="col" style="width: 100px">Số lượng</th>
+          <th scope="col" style="width: 80px">Lượt xem</th>
+          <th scope="col" style="width: 80px">Số lượng</th>
+          <th scope="col" style="width: 80px">Loại</th>
           <th scope="col" style="width: 150px">Ngày tạo</th>
-          <th scope="col" style="width:180px;">Các size</th>
-          <th scope="col" style="width:180px;">Các màu</th>
+          <th scope="col" style="width:150px;">Các size</th>
+          <th scope="col" style="width:150px;">Các màu</th>
           <th scope="col">Sửa</th>
           <th scope="col">Xóa</th>
         </tr>
@@ -22,6 +28,7 @@
             $productAll =get_all_product();
             $sizeAll = get_all_pdo("size");
             $colorAll = get_all_pdo("color");
+            $cateAll =get_all_pdo("category");
 
             foreach($productAll as $index => $product) {
                 if($product['deleted'] == 0) {
@@ -33,8 +40,15 @@
                                 <img src="./images/<?=$product['image']?>" alt="" class="img-product" />
                             </td>
                             <td><?=$product['price']?></td>
-                            <td><?=$product['view']?><?=$product['deleted']?></td>
+                            <td><?=$product['view']?></td>
                             <td><?=$product['quantily']?></td>
+                            <td><?php
+                                foreach($cateAll as $cate) {
+                                    if($cate['id'] == $product['cateId']) {
+                                        echo $cate['name'];
+                                    }
+                                }
+                            ?></td>
                             <td><?=$product['createdAt']?></td>
                             <td><div class="box-product-table-size">
                                 <?php 

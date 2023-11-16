@@ -25,5 +25,63 @@
         return $query_sql;
     }
 
+    // lấy tất cả các tài khoản
+
+    function getALlUser()  {
+        $sql = "SELECT * FROM `user`";
+
+        $query_sql = querySql($sql);
+        return $query_sql;
+    }
+
+    // lấy giá trị user
+    function getOnelUser($id)  {
+        $sql = "SELECT * FROM `user` where id = $id";
+        $query_sql = querySql($sql) ;
+        return $query_sql -> fetch();
+    }
+
+    // lấy tài khoản khách hàng
+
+    function getRoleZero()  {
+        $sql = "SELECT * FROM `user` where isRole = '0' and deleted = '0'";
+        $query_sql = querySql($sql);
+        return $query_sql -> fetchAll();
+    }
+
+    // lấy tài khoản nhân viên
+    function getRoleOne()  {
+        $sql = "SELECT * FROM `user` where isRole = '1' and deleted = '0'";
+        $query_sql = querySql($sql);
+        return $query_sql -> fetchAll();
+    }
+
+    // lấy user bị ban
+    function getblockUser()  {
+        $sql = "SELECT * FROM `user` where deleted = '1'";
+        $query_sql = querySql($sql);
+        return $query_sql -> fetchAll();
+    }
+
+    // cập nhập quyền
+    function updateRole($role,$id)  {
+        $sql = "UPDATE `user` SET `isRole`='$role' WHERE id =$id";
+        $query_sql = prepareSql($sql);
+        return $query_sql;
+    }
+
+    // ban user 
+    function banUser($id) { 
+        $sql = "UPDATE `user` SET `deleted` = '1' WHERE id = '$id'";
+        $query_sql = prepareSql($sql);
+        return $query_sql;
+    }
+
+    // khôi phục user 
+    function restorebanUser($id) { 
+        $sql = "UPDATE `user` SET `deleted` = '0' WHERE id = '$id'";
+        $query_sql = prepareSql($sql);
+        return $query_sql;
+    }
     
 ?>

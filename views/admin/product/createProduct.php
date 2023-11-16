@@ -274,6 +274,8 @@
 
 <!-- js xử lí đẩy dữ liệu -->
 <script>
+    const form = document.querySelector("#form-create-product");
+
     (() => {
             "use strict";
 
@@ -305,6 +307,7 @@
                           return res.json()
                         })
                         .then(res => {
+                          console.log(res);
                           if(res == 1) {
                             window.location = "/duan1_Nike/index.php?layout=dashboard&act=product";
                           }else {
@@ -312,14 +315,12 @@
                           }
                         })
                     }
-                    form.
                     form.classList.add("was-validated");
                 },
                 false
                 );
             });
         })();
-    const form = document.querySelector("#form-create-product");
 
     
 

@@ -51,7 +51,7 @@
                         <form action="" method="post">
                             <div class="box-category-create">
                                 <p>Thêm loại</p>
-                                <input type="text" class="form-control" name="nameUpdate" value="<?=$cateUpdate['name']?>"/>
+                                <input type="text" class="form-control" name="nameUpdate" value="<?=$cateUpdate['name']?>" spellcheck="false" />
                                 <button class="btn btn-primary" name="btn-update-cate">Cập nhập</button>
                             </div>
                         </form>

@@ -49,6 +49,16 @@
         if(!$user) { 
 
         }else {
+            if($user['isChat'] == 0 && $user['isRole'] == 0) {
+                createRoom($user['id']);
+                $updateIschat = "UPDATE `user` SET `isChat`= '1' WHERE id = ".$user['id'];
+                prepareSql($updateIschat);
+            }
+            if(!$user['isCart']) {
+                createCart($user['id']);
+                $updateIschat = "UPDATE `user` SET `isCart`= '1' WHERE id = ".$user['id'];
+                prepareSql($updateIschat);
+            }
             $_SESSION['user'] = $user['id'];
             header("Location:/duan1_Nike/index.php");
         }

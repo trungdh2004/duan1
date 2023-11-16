@@ -31,6 +31,7 @@
     <div class="main">
       <div class="side-bar">
         <div class="side-bar-logo">
+          <a href="/duan1_Nike/index.php">
           <svg
             aria-hidden="true"
             class="pre-logo-svg"
@@ -49,6 +50,7 @@
             ></path>
           </svg>
           Nike
+          </a>
         </div>
         <div class="side-bar-menu">
           <div class="side-bar-list">
@@ -125,12 +127,20 @@
             </a>
           </div>
           <a href="" class="logout">
-            <button>
-              <i class="fa-solid fa-arrow-right-to-bracket"></i> Logout
-            </button>
+            <form action="" method="post">
+              <button type="submit" name="btnlogout">
+                <i class="fa-solid fa-arrow-right-to-bracket" ></i> Logout
+              </button>
+            </form>
           </a>
         </div>
       </div>
       <div class="box-content">
 
-      
+
+<?php 
+  if(isset($_POST['btnlogout'])) {
+    session_destroy();
+    echo "<script>window.location = '/duan1_Nike/index.php'</script>";
+  }
+?>
