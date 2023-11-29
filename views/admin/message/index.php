@@ -58,7 +58,6 @@
 
 
 
-  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
   <script>
     const boxMessage = document.querySelector(".box-message-chat-content");
 

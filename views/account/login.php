@@ -1,5 +1,5 @@
 <div class="box-content-title">Đăng nhập</div>
-    <div class="box-content-form">
+<div class="box-content-form">
     <form class="row g-3 needs-validation" novalidate method="post">
         <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Tên đăng nhập</label>
@@ -47,6 +47,8 @@
 
         $user = login_user($username, $password);
         if(!$user) { 
+            echo "<script>alert('Bạn nhập sai tài khoản ?')</script>";
+            return ;
 
         }else {
             if($user['isChat'] == 0 && $user['isRole'] == 0) {
@@ -58,6 +60,11 @@
                 createCart($user['id']);
                 $updateIschat = "UPDATE `user` SET `isCart`= '1' WHERE id = ".$user['id'];
                 prepareSql($updateIschat);
+            }
+            if($user['deleted'] == 1) {
+                echo "<script>alert('Tài khoản của bạn đã bị ban ?')</script>";
+
+                return ;
             }
             $_SESSION['user'] = $user['id'];
             header("Location:/duan1_Nike/index.php");

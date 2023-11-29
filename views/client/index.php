@@ -26,6 +26,18 @@
             case "cart":
                 include "./views/client/routes/cart.php";
                 break;
+            case "adress":
+                include "./views/client/routes/adress/index.php";
+                break;
+            case "createAdress":
+                include "./views/client/routes/adress/createAdress.php";
+                break;
+            case "order":
+                include "./views/client/routes/order.php";
+                break;
+            case "outOrder":
+                include "./views/client/routes/getOutOrderPay.php";
+                break;
                 
         }
     }else {

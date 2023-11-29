@@ -1,5 +1,7 @@
 <?php 
   $getBanner = get_all_pdo("banner")[0];
+  $getAllColor = get_all_pdo("color");
+
 ?>
 <div class="box-content">
   <div class="banner">
@@ -67,7 +69,17 @@
             <div class="card-body">
               <h5 class="card-title text-truncate"><?=$pro['title']?></h5>
               <div class="card-evaluate">
-                <i class="fa-solid fa-star"></i>
+                <span>Màu :</span>
+                  <?php 
+                        foreach($getAllColor as $color) {
+                          if(in_array($color['id'],json_decode($pro['colorId']))) {
+                              ?>
+                                  <i style="background-color: <?=$color['colorCode'] ?>;"></i>
+                              <?php
+                          }
+                      }
+                  
+                  ?>
               </div>
 
               <div class="card-text">
@@ -105,7 +117,17 @@
                 <div class="card-body">
                   <h5 class="card-title text-truncate"><?=$pro['title']?></h5>
                   <div class="card-evaluate">
-                    <i class="fa-solid fa-star"></i>
+                    <span>Màu :</span>
+                      <?php 
+                            foreach($getAllColor as $color) {
+                              if(in_array($color['id'],json_decode($pro['colorId']))) {
+                                  ?>
+                                      <i style="background-color: <?=$color['colorCode'] ?>;"></i>
+                                  <?php
+                              }
+                          }
+                      
+                      ?>
                   </div>
 
                   <div class="card-text">

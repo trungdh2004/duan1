@@ -34,11 +34,11 @@
             if($userCheckRole['isRole'] == 2) {
                 ?>
                     <th scope="col" style="width: 60px"></th>
+                    <th scope="col" style="width: 60px">Ban</th>
 
                 <?php
             }
           ?>
-          <th scope="col" style="width: 60px">Ban</th>
         </tr>
       </thead>
       <tbody>
@@ -80,13 +80,15 @@
                                                 <button class="btn btn-outline-success btn-sm" name="btn-update-user" value="<?=$user['id']?>">Lưu</button>
                                             
                                         </td> 
+                                        <td>
+                                            <button class="btn btn-outline-danger btn-sm" name="btn-ban-user" value="<?=$user['id']?>">Ban</button>
+                                        </td>
                                     <?php
                                 }
+                                
                             ?>
                             
-                            <td>
-                                <button class="btn btn-outline-danger btn-sm" name="btn-ban-user" value="<?=$user['id']?>">Ban</button>
-                            </td>
+                            
                         </form>
                     </tr>
                 <?php

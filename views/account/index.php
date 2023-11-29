@@ -24,6 +24,10 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./style/login.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
   </head>
   <body>
     <div class="box-content">
@@ -36,6 +40,12 @@
                     break;
                   case 'forgot':
                     include "./views/account/forword.php";
+                    break;
+                  case 'otp':
+                    include "./views/account/otp.php";
+                    break;
+                  case 'refresh':
+                    include "./views/account/refreshPass.php";
                     break;
                 }
             }else {

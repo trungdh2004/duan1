@@ -4,7 +4,8 @@
         $getAllSize = get_all_pdo("size");
         $getAllColor = get_all_pdo("color");
         $getOneProduct = get_one_pdo("product",$id);
-
+        $queryProCategory = getProCategory($getOneProduct['cateId'],$id);
+        updateCountViewPro($id);
 ?>
 
     
@@ -110,15 +111,142 @@
         </div>
     </div>
     <br />
-    <div class="box-comment">hihihi</div>
-    <div class="box-product-similar"></div>
+    <div class="box-comment row">
+        <div class="col-8">
+            <div class="box-comment-left">
+            <h4>Comment</h4>
+                <?php 
+                    if($sessionUserId ) {
+                    ?>
+                        <div class="box-comment-left-form">
+                            <form action="" method="post" id="form-comment">
+                                <input type="text" placeholder="Mời nhập ..." name="content" required>
+                                <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+                            </form>            
+                        </div>
+                    <?php
+                    }else {
+                       echo ' Đăng nhập để comment';
+                    }
+                ?>
+                
+                <div class="box-comment-left-list">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="box-product-category-other">
+                <h5>Các sản phẩm khác</h5>
+                <?php 
+                    foreach($queryProCategory as $item) {
+                        ?>
+                            <a href="/duan1_Nike/index.php?act=productDetail&id=<?=$item['id']?>">
+                                <div class="box-comment-category-other-item">
+                                    <div class="box-comment-category-other-item-img">
+                                    <img src="./images/<?=$item['image']?>" alt="">
+                                    </div>
+                                    <div class="box-comment-category-other-item-text">
+                                    <h5><?=$item['title']?></h5>
+                                    <p>Giá :<?=currency_format($item['price'])?></p>
+                                    <p>View: <?=$item['view']?></p>
+                                    </div>
+                                </div>
+                            </a>
+                        <?php
+                    }
+                ?>
+                
+                
+            </div>
+        </div>
     </div>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+    const boxListComment = document.querySelector('.box-comment-left-list');
+
+    const dataComment = [
+        <?php 
+            $queryAllComment = getAllCommentPro($id);
+            foreach($queryAllComment as $item) {
+                echo "
+                    {
+                        image:'".$item['avatar']."',
+                        fullname:'".$item['fullname']."',
+                        content:'".$item['content']."',
+                        date:'".$item['createdAt']."'
+                    },
+                ";
+            }
+
+        ?>
+    ]
+    
+
+    function showComment() {
+        const data = dataComment.map(item => (
+            `
+                <div class="box-comment-left-list-items">
+                    <div class="box-comment-left-list-items-avatar">
+                        <img src="./images/${item.image}" alt="">
+                    </div>
+                    <div class="box-comment-left-list-items-text">
+                        <div class="box-comment-left-list-items-name">
+                            <b>${item.fullname}</b>
+                            <span>${item.date}</span>
+                        </div>
+                        <div class="box-comment-left-list-items-content">
+                            ${item.content}
+                        </div>
+                    </div>
+                </div>
+            `
+        )).join("");
+        boxListComment.innerHTML = data
+    }
+    showComment();
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('43fa15a08908b7bd93bf', {
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('<?=$id?>');
+    channel.bind('comment', function(data) {
+        dataComment.unshift(JSON.parse(data));
+        showComment();
+    });
+</script>
 
 
-      <script>
+<script>
+    const formComment = document.querySelector("#form-comment");
+    const inputComment = document.querySelector("#form-comment input");
+    console.log(inputComment);
+    
+    formComment.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        data.append('proId','<?=$id?>');
+        data.append('userId','<?=$sessionUserId?>');
+        fetch("/duan1_Nike/pusherRealtime/comment.php",{
+            method : 'POST',
+            body:data
+        }).then(() => {
+            inputComment.value = "";
+            inputComment.focus();
+        })
+    })
+</script>
+<script>
+
+        
 
 
-      (() => {
+
+
+    (() => {
         "use strict";
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -126,41 +254,37 @@
 
         // Loop over them and prevent submission
         Array.from(forms).forEach((form) => {
-          form.addEventListener(
-            "submit",
-            (event) => {
-              if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-                alert("Mời bạn chọn màu và size");
-              }else {
-                event.preventDefault();
-                const data = new FormData(form)
-                data.append("idPro",<?=$id?>)
-                data.append("cartId",<?php echo $cartUserSesstion ? $cartUserSesstion['id'] : ""?>)
-                fetch("/duan1_Nike/controllers/fetchProduct/createProCartController.php",{
-                    method:"post",
-                    body:data
-                }).then(res => {
-                    return res.json()
-                }).then(res => {
-                    toastBody.textContent = "Đã Thêm vào giỏ hàng";
-                    toastBootstrap.show()
-                })
-              }
+            form.addEventListener(
+                "submit",
+                (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    alert("Mời bạn chọn màu và size");
+                }else {
+                    event.preventDefault();
+                    const data = new FormData(form)
+                    data.append("idPro",<?=$id?>)
+                    data.append("cartId",<?php echo $cartUserSesstion ? $cartUserSesstion['id'] : ""?>)
+                    fetch("/duan1_Nike/controllers/fetchProduct/createProCartController.php",{
+                        method:"post",
+                        body:data
+                    }).then(res => {
+                        return res.json()
+                    }).then(res => {
+                        toastBody.textContent = "Đã Thêm vào giỏ hàng";
+                        toastBootstrap.show()
+                    })
+                }
 
-              form.classList.add("was-validated");
-            },
-            false
-          );
+                form.classList.add("was-validated");
+                },
+                false
+            );
         });
-      })();
-    </script>
+    })()
+</script>
 
 <?php 
     }
-    else {
-
-    }
-    
-?>
+    ?>

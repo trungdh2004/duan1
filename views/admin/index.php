@@ -23,10 +23,13 @@
                 include "./views/admin/order/index.php";
                 break;
             case 'ship' :
-                include "./views/admin/order/index.php";
+                include "./views/admin/order/shipOrder.php";
                 break;
             case 'orderTotal' :
-                include "./views/admin/order/index.php";
+                include "./views/admin/order/successOrder.php";
+                break;
+            case 'orderDetail' :
+                include "./views/admin/order/orderDetail.php";
                 break;
             case 'user' :
                 include "./views/admin/user/index.php";

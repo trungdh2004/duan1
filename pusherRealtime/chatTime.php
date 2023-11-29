@@ -24,6 +24,7 @@
     $last = ["lastmess" => $content, "createAt" => $time,"id" => $roomId];
     $pusher->trigger($_POST['room'], 'chatMessage', json_encode($data));
     $pusher->trigger($_POST['room'], 'lastMessage', json_encode($last));
+    $pusher->trigger('sidebar', 'notifycation', json_encode(1));
     $sql = "INSERT INTO `messages`( `roomId`, `chat`, `sender`) VALUES ('$roomId','$content','$sender')";
     $sqlLastMess = "UPDATE `conversation` SET `lastMess`='$content' WHERE id = $roomId";
     prepareSql($sql);

@@ -18,9 +18,8 @@
 
     // cập nhập tài khoản 
 
-    function  updateInfo($fistname,$lastname,$email,$password,$image,$id)  {
-        $sql = "UPDATE `user` SET `fistname`='$fistname',`lastname`='$lastname',`email`='$email',`password`='$password',`image`='$image' WHERE id =$id";
-
+    function  updateInfo($fistname,$lastname,$email,$password,$image,$id,$fullname)  {
+        $sql = "UPDATE `user` SET `fistname`='$fistname',`lastname`='$lastname',`email`='$email',`password`='$password',`image`='$image',`fullname` = '$fullname' WHERE id =$id";
         $query_sql = prepareSql($sql);
         return $query_sql;
     }
@@ -31,7 +30,7 @@
         $sql = "SELECT * FROM `user`";
 
         $query_sql = querySql($sql);
-        return $query_sql;
+        return $query_sql->fetchAll();
     }
 
     // lấy giá trị user
@@ -84,4 +83,35 @@
         return $query_sql;
     }
     
+
+    // thêm địa chỉ
+    function getAdress($userId) {
+        $sql = "SELECT * FROM `adress` WHERE userId = $userId";
+
+        $result = querySql($sql);
+        return $result->fetchAll();
+    }
+
+    // lấy tất cả khách hàng hôm nay
+    function getAllUserDay() {
+        $dateDay = date('Y-m-d');
+        $sql = "SELECT * FROM `user`  WHERE createdAt LIKE '%$dateDay%'";
+        $result = querySql($sql);
+        return $result->fetchAll();
+    }
+
+
+    // lấy tất cả các khách hàng có email 
+    function getAllEmailUser($email) {
+        $sql = "SELECT * FROM `user` WHERE email = '$email'";
+        $result = querySql($sql);
+        return $result->fetchAll();
+    }
+
+    // cập nhập mật khẩu mới
+    function updateForwordPass($id, $password){
+        $sql = "UPDATE `user` SET `password`='$password' WHERE id = $id";
+        $result = prepareSql($sql);
+        return $result;
+    }
 ?>

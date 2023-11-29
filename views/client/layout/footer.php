@@ -4,7 +4,11 @@
   if(isset($userInfoSesstion) && $userInfoSesstion['isRole'] == 0) {
     ?>
       <div class="box-message">
-        <button type="button" class="btn-model-message" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-regular fa-comments"></i></button>
+        <button type="button" class="btn-model-message position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-regular fa-comments"></i>
+         <!-- <span class="notifycation">
+          1 
+        </span> -->
+</button>
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="100" id="offcanvasWithBothOptions"       aria-labelledby="offcanvasWithBothOptionsLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Liên hệ với shop</h5>

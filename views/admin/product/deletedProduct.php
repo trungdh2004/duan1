@@ -18,57 +18,55 @@
       </thead>
       <tbody>
         <?php 
-            $productAll =get_all_product();
+            $productAll =getDeletedProduct();
             $sizeAll = get_all_pdo("size");
             $colorAll = get_all_pdo("color");
 
             foreach($productAll as $index => $product) {
-                if($product['deleted'] == 1) {
-                    ?>
-                        <tr>
-                            <th style="width: 20px"><?=$index?></th>
-                            <td><?=$product['title']?></td>
-                            <td style="width: 100px">
-                                <img src="./images/<?=$product['image']?>" alt="" class="img-product" />
-                            </td>
-                            <td><?=$product['price']?></td>
-                            <td><?=$product['view']?><?=$product['deleted']?></td>
-                            <td><?=$product['quantily']?></td>
-                            <td><?=$product['createdAt']?></td>
-                            <td><div class="box-product-table-size">
-                                <?php 
-                                    foreach($sizeAll as $size) {
-                                        if(in_array($size['id'], json_decode($product['sizeId']))) {
-                                            echo "<button>".$size['name']."</button>";
-                                        }
-                                    }
-                                ?>
-                                
-                            </div></td>
-                            <td>
-                            <div class="box-product-table-color">
-                                <?php 
-                                    foreach($colorAll as $color) {
-                                        if(in_array($color['id'], json_decode($product['colorId']))) {
-                                            echo "<button style='background-color:".$color['colorCode'].";'></button>";
-                                        }
-                                    }
-                                ?>
-                                
-                            </div>
-                            </td>
-                            
-                            <td style="width: 50px">
-                                <form action="" method="post" >
+            ?>
+                <tr>
+                    <th style="width: 20px"><?=$index?></th>
+                    <td><?=$product['title']?></td>
+                    <td style="width: 100px">
+                        <img src="./images/<?=$product['image']?>" alt="" class="img-product" />
+                    </td>
+                    <td><?=$product['price']?></td>
+                    <td><?=$product['view']?><?=$product['deleted']?></td>
+                    <td><?=$product['quantily']?></td>
+                    <td><?=$product['createdAt']?></td>
+                    <td><div class="box-product-table-size">
+                        <?php 
+                            foreach($sizeAll as $size) {
+                                if(in_array($size['id'], json_decode($product['sizeId']))) {
+                                    echo "<button>".$size['name']."</button>";
+                                }
+                            }
+                        ?>
+                        
+                    </div></td>
+                    <td>
+                    <div class="box-product-table-color">
+                        <?php 
+                            foreach($colorAll as $color) {
+                                if(in_array($color['id'], json_decode($product['colorId']))) {
+                                    echo "<button style='background-color:".$color['colorCode'].";'></button>";
+                                }
+                            }
+                        ?>
+                        
+                    </div>
+                    </td>
+                    
+                    <td style="width: 50px">
+                        <form action="" method="post" >
 
-                                    <button type="button " class="btn btn-danger btn-sm" name="btn-restore-product" value="<?=$product['id']?>" 
-                                        onclick="return confirm('Are you sure you want to delete this product')"
-                                    >Khôi phục</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php
-                }
+                            <button type="button " class="btn btn-primary btn-sm" name="btn-restore-product" value="<?=$product['id']?>" 
+                                onclick="return confirm('Bạn có muốn khôi phục sản phẩm')"
+                            >Khôi phục</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php
                 
             }
         ?>

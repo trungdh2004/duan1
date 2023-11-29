@@ -3,6 +3,7 @@
     session_start();
 
     include "./modal/pdo.php";
+    
     include "./controllers/userController.php";
     include "./controllers/sizeController.php";
     include "./controllers/colorController.php";
@@ -10,6 +11,10 @@
     include "./controllers/productController.php";
     include "./controllers/roomChatController.php";
     include "./controllers/cartController.php";
+    include "./controllers/createAdressController.php";
+    include "./controllers/orderController.php";
+    include "./controllers/commentController.php";
+    include "./vnpay/demoVnpay.php";
     include "./controllers/toast.php";
 
     $sessionUserId = null;

@@ -79,28 +79,36 @@
 </div>
 
 <script>
-  const ctx = document.getElementById("box-category-cirle");
+  const dashboardCategory = document.querySelector("#box-category-cirle");
 
-  new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+  async function getCateCountPro() {
+    const query = await fetch("/duan1_Nike/api/apiCategory.php?cate=pro")
+    const res = await query.json();
+
+    const data = res;
+
+    new Chart(dashboardCategory, {
+      type: "doughnut",
+      data: {
+        labels: data.map(item => item.name),
+        datasets: [
+          {
+            label: "# of Votes",
+            data: data.map(item => item.count),
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
         },
       },
-    },
-  });
+    });
+  }
+  getCateCountPro()
 </script>
 
 <?php 

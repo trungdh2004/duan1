@@ -2,32 +2,40 @@
   $getAllCate = get_all_pdo("category");
   $getAllColor = get_all_pdo("color");
   $getAllSize = get_all_pdo("size");
-  $getAllProduct = get_all_pdo("product");
+  $getAllProduct = get_all_product();
 
-  $filterProduct = $getAllProduct;
+
+  $filterProduct = null;
+
+  if(isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $filterProduct = filterProSearch($getAllProduct,$search);
+  }else {
+    $filterProduct = $getAllProduct;
+  }
 
   // loc theo cate
   if(isset($_POST['btn-cate'])) {
     $idCate = $_POST['btn-cate'];
-    $filterProduct = filterProCate($getAllProduct,$idCate);
+    $filterProduct = filterProCate($filterProduct,$idCate);
   }
 
   // loc theo price
   if(isset($_POST['btn-price'])) {
     $idCate = $_POST['btn-price'];
-    $filterProduct = filterProPrice($getAllProduct,$idCate);
+    $filterProduct = filterProPrice($filterProduct,$idCate);
   }
 
   // loc theo mau
   if(isset($_POST['btn-color'])) {
     $idCate = $_POST['btn-color'];
-    $filterProduct = filterProColor($getAllProduct,$idCate);
+    $filterProduct = filterProColor($filterProduct,$idCate);
   }
 
   // loc theo size
   if(isset($_POST['btn-size'])) {
     $idCate = $_POST['btn-size'];
-    $filterProduct = filterProSize($getAllProduct,$idCate);
+    $filterProduct = filterProSize($filterProduct,$idCate);
   }
 
   // sắp xêp 
@@ -178,7 +186,17 @@
                 <div class="card-body">
                   <h5 class="card-title text-truncate"><?=$pro['title']?></h5>
                   <div class="card-evaluate">
-                    <i class="fa-solid fa-star"></i>
+                    <span>Màu :</span>
+                    <?php 
+                          foreach($getAllColor as $color) {
+                            if(in_array($color['id'],json_decode($pro['colorId']))) {
+                                ?>
+                                    <i style="background-color: <?=$color['colorCode'] ?>;"></i>
+                                <?php
+                            }
+                        }
+                    
+                    ?>
                   </div>
 
                   <div class="card-text">

@@ -1,3 +1,12 @@
+<?php
+  $queryAllUser = getALlUser();
+  $queryDayUser = getAllUserDay();
+  $queryOrderNews = getAllOrdersNew();
+  $queryOrderShip = getAllOrdersShip();
+  $queryAllComment = get_all_pdo("comment");
+
+?>
+
 <div class="box-dashboar">
   <h2 class="title">Dashboard</h2>
 
@@ -9,7 +18,7 @@
           <i class="fa-solid fa-user-plus"></i>
         </div>
         <div class="box-dashboard-grid-items-detail">
-          <span>15</span>
+          <span><?=count($queryDayUser)?></span>
           <p>Người dùng mới</p>
         </div>
       </div>
@@ -18,7 +27,7 @@
           <i class="fa-regular fa-user"></i>
         </div>
         <div class="box-dashboard-grid-items-detail">
-          <span>15</span>
+          <span><?=count($queryAllUser)?></span>
           <p>Tổng người dùng</p>
         </div>
       </div>
@@ -27,7 +36,7 @@
           <i class="fa-solid fa-cart-plus"></i>
         </div>
         <div class="box-dashboard-grid-items-detail">
-          <span>15</span>
+          <span><?=count($queryOrderNews)?></span>
           <p>Đơn hàng mới</p>
         </div>
       </div>
@@ -36,7 +45,7 @@
           <i class="fa-solid fa-truck-fast"></i>
         </div>
         <div class="box-dashboard-grid-items-detail">
-          <span>15</span>
+          <span><?=count($queryOrderShip)?></span>
           <p>Đơn đang giao</p>
         </div>
       </div>
@@ -45,7 +54,7 @@
           <i class="fa-regular fa-comment"></i>
         </div>
         <div class="box-dashboard-grid-items-detail">
-          <span>15</span>
+          <span><?=count($queryAllComment)?></span>
           <p>Tổng comment</p>
         </div>
       </div>
@@ -69,78 +78,30 @@
     <div class="box-dashboard-table-user">
       <div class="box-dashboard-table-user-title">Người dùng mới hôm nay</div>
       <div class="box-dashboard-table-user-list">
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
-        <div class="box-dashboard-table-user-list-items">
-          <div class="box-dashboard-table-user-list-items-avatar">
-            <img src="./images/avatar.png" alt="" />
-          </div>
-          <div class="box-dashboard-table-user-list-items-text">
-            <p>Đỗ Hữu Trung</p>
-            <span>12h34p</span>
-          </div>
-        </div>
+        <?php
+          if(count($queryDayUser) > 0) {
+            foreach($queryDayUser as $item) {
+              ?>
+                <div class="box-dashboard-table-user-list-items">
+                  <div class="box-dashboard-table-user-list-items-avatar">
+                    <img src="./images/<?=$item['image'] ?>" alt="" />
+                  </div>
+                  <div class="box-dashboard-table-user-list-items-text">
+                    <p><?=$item['fullname'] ?></p>
+                    <span><?php 
+                      $date=date_create($item['createdAt']);
+                      echo date_format($date,"H:i:s")?>
+                    </span>
+                  </div>
+                </div>
+              <?php
+            }
+          }else {
+            echo "Hôm nay không có ai";
+          }
+        ?>
+        
+        
       </div>
     </div>
     <div class="box-dashboard-table-order">
@@ -149,7 +110,7 @@
         <table class="table">
           <thead class="table-primary">
             <tr>
-              <th scope="col">Người dùng</th>
+              <th scope="col">Tên sản phẩm</th>
               <th scope="col">Sản phẩm</th>
               <th scope="col">Số lượng</th>
               <th scope="col">Tổng tiền</th>
@@ -158,140 +119,50 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <img src="./images/avatar.png" alt="" id="avatar" /><span
-                  >Đỗ Hữu Trung</span
-                >
-              </td>
-              <td>
-                <img src="./images/product1.webp" alt="" class="product" />
-              </td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="info">info</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="ship">ship</p></td>
-            </tr>
-            <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>12</td>
-              <td>12</td>
-              <td><p class="success">success</p></td>
-            </tr>
+
+          <?php 
+            $queryAllProOrder = getAllProOrders();
+            foreach($queryAllProOrder as $item) {
+              ?>
+                <tr>
+                  <td>
+                    <?=$item['title']?>
+                  </td>
+                  <td>
+                    <img src="./images/<?=$item['image']?>" alt="" class="product" />
+                  </td>
+                  <td><?=$item['quantily']?></td>
+                  <td><?=currency_format($item['price']*$item['quantily'])?></td>
+                  <td><?=$item['createdAt']?></td>
+                  <td><p class="<?php 
+                    if($item['status'] == '0') {
+                      echo "info";
+                    }
+                    else if($item['status'] == '1') {
+                      echo "ship";
+                    }
+                    else {
+                      echo "success";
+
+                    }
+                  ?>"><?php 
+                    if($item['status'] == '0') {
+                      echo "Chưa giao";
+                    }
+                    else if($item['status'] == '1') {
+                      echo "Đang giao";
+                    }
+                    else {
+                      echo "Thành công";
+
+                    }
+                  ?></p></td>
+                </tr>
+              <?php
+            }
+          ?>
+            
+            
           </tbody>
         </table>
       </div>
@@ -301,48 +172,69 @@
 
 <script>
   const dashboardUser = document.querySelector("#dashboard-chart-user");
-const dashboardCategory = document.querySelector("#dashboard-chart-category");
+  const dashboardCategory = document.querySelector("#dashboard-chart-category");
 
-new Chart(dashboardUser, {
-  type: "line",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+
+  async function getUserLimit7Day() {
+    const query = await fetch("/duan1_Nike/api/apiuser.php?count=user")
+    const res = await query.json();
+
+    const data = res.reverse();
+    console.log();
+
+    new Chart(dashboardUser, {
+    type: "line",
+    data: {
+      labels: data.map(item => item.date),
+      datasets: [
+        {
+          label: "người dùng",
+          data:data.map(item => item.count),
+          borderWidth: 1,
+        },
+        
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
       },
     },
-  },
-});
+  });
+  }
+  getUserLimit7Day()
 
-new Chart(dashboardCategory, {
-  type: "doughnut",
-  data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1,
+
+  async function getCateCountPro() {
+    const query = await fetch("/duan1_Nike/api/apiCategory.php?cate=pro")
+    const res = await query.json();
+
+    const data = res;
+    console.log();
+
+    new Chart(dashboardCategory, {
+      type: "doughnut",
+      data: {
+        labels: data.map(item => item.name),
+        datasets: [
+          {
+            label: "# of Votes",
+            data: data.map(item => item.count),
+            borderWidth: 1,
+          },
+        ],
       },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
       },
-    },
-  },
-});
+    });
+  }
+  getCateCountPro()
 
 </script>

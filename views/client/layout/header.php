@@ -82,7 +82,6 @@
               <li><a href="/duan1_Nike/index.php?act=product">Sản phẩm</a></li>
               <li>
                 <a href="/duan1_Nike/index.php?act=cart" class="cart">
-                  <span>1</span>
                   <i class="fa-solid fa-basket-shopping"></i
                 ></a>
               </li>
@@ -119,7 +118,21 @@
                           <?php
                         }
                       ?>
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="/duan1_Nike/index.php?act=purchase"
+                          >Đơn hàng</a
+                        >
+                      </li>
                       
+                      <li>
+                        <a
+                          class="dropdown-item"
+                          href="/duan1_Nike/index.php?act=adress"
+                          >Thông tin địa chỉ</a
+                        >
+                      </li>
                       <li>
                         <a
                           class="dropdown-item"
@@ -169,4 +182,10 @@
         session_destroy();
         echo "<script>window.location = '/duan1_Nike/index.php'</script>";
       }
+      if(isset($_POST['btnSearch'])) {
+        $search = $_POST['search'];
+        echo "<script>window.location ='/duan1_Nike/index.php?act=product&search=$search'</script>";
+      }
+
+      getAllUserDay();
     ?>

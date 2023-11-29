@@ -7,8 +7,8 @@
 <div class="box-cart">
   <div class="box-cart-left">
     <div class="box-cart-left-sale">
-      <h4>Voucher</h4>
-      <p>Free ship & Sale 100k cho đơn hàng đầu tiên</p>
+      <h4>Nike mua sắm</h4>
+      <p>Mua sắm những đôi giày chất lượng đến từ hãng Nike nổi tiếng</p>
     </div>
     <div class="box-cart-left-box">
       <div class="box-cart-left-title">Giỏ hàng</div>
@@ -40,19 +40,15 @@
   </div>
 </div>
 
-<script>
-  window.addEventListener("beforeunload", (event) => {
-    event.preventDefault();
-    event.returnValue = true;
-  });
-</script>
+
 
 <script>
   const boxCart = document.querySelector(".box-cart-left-list");
   const textPrice = document.querySelector("#box-cart-right-text-price");
   const textTotal = document.querySelector("#box-cart-right-text-total")
+  const btnBuyer = document.querySelector(".box-cart-btn-buy");
 
-
+  console.log(btnBuyer);
 
   const dataProCart = [   
     <?php 
@@ -76,6 +72,9 @@
 
   function showProCart() {
     let dataList = null;
+    if(dataProCart.length == 0 ) {
+      btnBuyer.setAttribute("disabled", "");
+    }
 
     if(dataProCart.length > 0) {
       dataList = dataProCart.map(item => {
@@ -115,7 +114,6 @@
     }else {
       dataList =`<p>Chưa có sản phẩm nào</p>`;
     }
-    console.log(dataList);
     boxCart.innerHTML = dataList
     totalProCart()
   }
@@ -128,6 +126,12 @@
       }
     })
     showProCart()
+
+    fetch(`/duan1_Nike/controllers/cartController.php?method=delete&id=${id}`)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+      })
   }
 
   function quationUp(id) {
@@ -170,10 +174,27 @@
     textPrice.innerText = VND.format(addPrice)
     textTotal.innerText = VND.format(addPrice + 10000)
   }
+
+  btnBuyer.addEventListener('click',(e) =>{
+    fetch("/duan1_Nike/controllers/cartController.php?method=update",{
+      method: 'POST',
+      headers:{
+        "content-type": "application/json",
+
+      },
+      body:JSON.stringify(dataProCart)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      if(res == 1) {
+        window.location = "/duan1_Nike/index.php?act=order&idCart=<?=$cartUserSesstion['id']?>";
+      }
+      else {
+        toastBody.textContent = "Lỗi mua hàng mời bạn load lại trang";
+        toastBootstrap.show()
+      }
+    })
+  })
 </script>
 
-<script>
-  
-
-  
-</script>

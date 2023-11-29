@@ -111,6 +111,7 @@
     $lastnameNew = $userInfoSesstion['lastname'];
     $emailNew = $userInfoSesstion['email'];
     $image_name = $userInfoSesstion['image'];
+    
 
     if($image['name']) {
       $image_name = time().$image['name'];
@@ -126,10 +127,11 @@
       $emailNew = $email;
     }
     if($password) {
-      $passNew =$password;
+      $passnew =$password;
     }
+    $fullname = $fistname." ".$lastname;
 
-    $userquery = updateInfo($fistnameNew,$lastnameNew,$emailNew,$passnew,$image_name,$userInfoSesstion['id']);
+    $userquery = updateInfo($fistnameNew,$lastnameNew,$emailNew,$passnew,$image_name,$userInfoSesstion['id'],$fullname);
 
     if($userquery) {
       echo '<script > window.location = "/duan1_Nike/index.php?act=userInfo"</script>';

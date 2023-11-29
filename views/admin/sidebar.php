@@ -25,6 +25,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./style/admin.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 
   </head>
   <body>
@@ -69,21 +71,39 @@
                 <i class="fa-solid fa-plus"></i> Thêm mới
               </button>
             </a>
-            <a href="/duan1_Nike/index.php?layout=dashboard&act=orderNew">
-              <button data-type="orderNew" class="sideBarButton">
-                <i class="fa-solid fa-cart-plus"></i> Đơn mới
-              </button>
-            </a>
-            <a href="/duan1_Nike/index.php?layout=dashboard&act=ship">
-              <button data-type="ship" class="sideBarButton">
-                <i class="fa-solid fa-truck-fast"></i> Giao hàng
-              </button>
-            </a>
-            <a href="/duan1_Nike/index.php?layout=dashboard&act=orderTotal">
-              <button data-type="orderTotal" class="sideBarButton">
-                <i class="fa-solid fa-list-ul"></i> Tổng đơn
-              </button>
-            </a>
+            <!--  -->
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <i class="fa-solid fa-box"></i>
+                    Đơn hàng
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <a href="/duan1_Nike/index.php?layout=dashboard&act=orderNew">
+                      <button data-type="orderNew" class="sideBarButton">
+                         Đơn mới
+                      </button>
+                    </a>
+                    <a href="/duan1_Nike/index.php?layout=dashboard&act=ship">
+                      <button data-type="ship" class="sideBarButton">
+                        Giao hàng
+                      </button>
+                    </a>
+                    <a href="/duan1_Nike/index.php?layout=dashboard&act=orderTotal">
+                      <button data-type="orderTotal" class="sideBarButton">
+                         Tổng đơn
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--  -->
+            
+            <!--  -->
             <a href="/duan1_Nike/index.php?layout=dashboard&act=user">
               <button data-type="user" class="sideBarButton">
                 <i class="fa-regular fa-user"></i> Người dùng
@@ -92,6 +112,9 @@
             <a href="/duan1_Nike/index.php?layout=dashboard&act=message">
               <button data-type="message" class="sideBarButton">
                 <i class="fa-regular fa-message"></i> Tin nhắn
+
+                <span class="notifycation-comment">0</span>
+
               </button>
             </a>
             <a href="/duan1_Nike/index.php?layout=dashboard&act=comment">
@@ -120,11 +143,19 @@
                 <i class="fa-regular fa-images"></i>Banner
               </button>
             </a>
-            <a href="/duan1_Nike/index.php?layout=dashboard&act=revenue">
-              <button data-type="revenue" class="sideBarButton">
-                <i class="fa-solid fa-chart-line"></i> Doanh thu
-              </button>
-            </a>
+            <?php 
+              $userCheckRole = getOnelUser($sessionUserId);
+              if($userCheckRole['isRole'] == 2) {
+                ?>
+                  <a href="/duan1_Nike/index.php?layout=dashboard&act=revenue">
+                    <button data-type="revenue" class="sideBarButton">
+                      <i class="fa-solid fa-chart-line"></i> Doanh thu
+                    </button>
+                  </a>
+                <?php
+              }
+            ?>
+            
           </div>
           <a href="" class="logout">
             <form action="" method="post">
