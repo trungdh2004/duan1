@@ -85,7 +85,7 @@
                             ?>
                             
                             <td>
-                                <button class="btn btn-outline-danger btn-sm" name="btn-ban-user" value="<?=$user['id']?>">Ban</button>
+                                <button class="btn btn-outline-danger btn-sm" name="btn-ban-user" value="<?=$user['id']?>" onclick="return confirm('Bạn có muốn ban không ?')">Ban</button>
                             </td>
                         </form>
                     </tr>
@@ -115,7 +115,7 @@
         $idBan = $_POST['btn-ban-user'];
         $result =banUser($idBan);
         if($result) {
-            echo "<script> window.location = '/duan1_Nike/index.php?layout=dashboard&act=user&method=staff'</script>";
+            echo "<script> window.location = '/duan1_Nike/index.php?layout=dashboard&act=user'</script>";
         }
     }
 ?>

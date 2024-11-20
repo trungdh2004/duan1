@@ -127,7 +127,7 @@
     })
     showProCart()
 
-    fetch(`/duan1_Nike/controllers/cartController.php?method=delete&id=${id}`)
+    fetch(`/duan1_Nike/controllers/fetchProduct/cartProController.php?method=delete&id=${id}`)
       .then(res => res.json())
       .then(res => {
         console.log(res);
@@ -176,7 +176,7 @@
   }
 
   btnBuyer.addEventListener('click',(e) =>{
-    fetch("/duan1_Nike/controllers/cartController.php?method=update",{
+    fetch("/duan1_Nike/controllers/fetchProduct/cartProController.php?method=update",{
       method: 'POST',
       headers:{
         "content-type": "application/json",

@@ -8,10 +8,10 @@
         $conn = pdo_get_connection();
             for($i=0;$i < 10 ; $i++) { 
                 $doituong = new stdClass;
-                $date = date('Y-m-j');
+                $date = date('Y-m-d');
                 $newdate = strtotime ( "-$i day" , strtotime ( $date ) ) ;
-                $newdate = date ( 'Y-m-j' , $newdate );
-                $user_sql = "SELECT COUNT(createdAt) as 'count', SUM(total_money) as 'total' FROM orders WHERE createdAt like '%$newdate%'";
+                $newdate = date ( 'Y-m-d' , $newdate );
+                $user_sql = "SELECT COUNT(createdAt) as 'count', SUM(total_money) as 'total' FROM orders WHERE status = '2' and createdAt like '%$newdate%'";
                 $query = $conn  -> query($user_sql);
                 $result = $query -> fetchAll();
                 $doituong -> date = "$newdate";

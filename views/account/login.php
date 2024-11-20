@@ -29,12 +29,12 @@
             </div>
         </div>
         <div class="col-md-12">
-            <button class="btn btn-dark" name="btn-login">Đăng nhập</button>
+            <button class="btn btn-dark" name="btn-login" >Đăng nhập</button>
         </div>
 
         <div class="col-md-12">
-            <div class="box-conten-footer">
-                <span>Bạn chưa có tài khoản <a href="/duan1_Nike/index.php?layout=account&type=register">Đăng kí</a></span>
+            <div class="box-conten-footer" >
+                <span>Bạn chưa có tài khoản <a href="/duan1_Nike/index.php?layout=account&type=register" >Đăng kí</a></span>
             </div>
         </div>
     </form>
@@ -47,7 +47,7 @@
 
         $user = login_user($username, $password);
         if(!$user) { 
-            echo "<script>alert('Bạn nhập sai tài khoản ?')</script>";
+            echo "<script>handlerToast('error','Tài khoản không chính xác')</script>";
             return ;
 
         }else {
@@ -62,12 +62,13 @@
                 prepareSql($updateIschat);
             }
             if($user['deleted'] == 1) {
-                echo "<script>alert('Tài khoản của bạn đã bị ban ?')</script>";
+                echo "<script>handlerToast('error','Tài khoản của bạn đã bị ban')</script>";
 
                 return ;
             }
             $_SESSION['user'] = $user['id'];
-            header("Location:/duan1_Nike/index.php");
+            echo "<script>window.location = '/duan1_Nike/index.php'</script>";
+
         }
     }
 ?>

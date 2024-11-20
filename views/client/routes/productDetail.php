@@ -63,7 +63,7 @@
             <div class="box-product-deltail-body-size">
             <p>Size :</p>
             <div class="box-product-deltail-body-size-list">
-
+                    
                 <?php
                         foreach($getAllSize as $size) {
                             ?>
@@ -76,7 +76,7 @@
                                         value="<?=$size['id']?>"
                                         class="form-check-input"
                                         <?php 
-                                            if(in_array($size['id'],json_decode($getOneProduct['sizeId']))) {
+                                            if(!in_array($size['id'],json_decode($getOneProduct['sizeId']))) {
                                                 echo 'disabled';
                                             }
                                         ?>
@@ -162,6 +162,7 @@
         </div>
     </div>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<!-- show comment -->
 <script>
     const boxListComment = document.querySelector('.box-comment-left-list');
 
@@ -219,11 +220,14 @@
     });
 </script>
 
+<?php 
+    if($sessionUserId ) {
+        ?>
 
+<!-- form coment -->
 <script>
     const formComment = document.querySelector("#form-comment");
     const inputComment = document.querySelector("#form-comment input");
-    console.log(inputComment);
     
     formComment.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -239,12 +243,10 @@
         })
     })
 </script>
+<?php
+    }
+?>
 <script>
-
-        
-
-
-
 
     (() => {
         "use strict";
@@ -260,7 +262,10 @@
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
-                    alert("Mời bạn chọn màu và size");
+                    console.log("hihi");
+                    toastBody.textContent = "Mời bạn chọn màu và size";
+                    toastBootstrap.show()
+
                 }else {
                     event.preventDefault();
                     const data = new FormData(form)

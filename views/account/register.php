@@ -88,6 +88,32 @@
     </form>
 </div>
 
+<script>
+    (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+        console.log(forms.checkValidity);
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+
+</script>
+
 
 <?php 
 
@@ -102,12 +128,22 @@
         $fullname = $fistname." ".$lastname;
 
 
-        $user = register_user($fullname,$fistname,$lastname,$age,$username,$email,$password);
-        
-        if($user) {
-            header("Location:/duan1_Nike/index.php?layout=account");
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<script>handlerToast('error','$email không đúng định dạng email')</script>";
+            return;
+        } 
+
+        $check = checkUsername($username);
+        if($check) {
+            echo "<script>handlerToast('error','Tên đăng nhập đã có người khác đăng kí')</script>";
+        }else {
+            $user = register_user($fullname,$fistname,$lastname,$age,$username,$email,$password);
+            echo "<script>handlerToast('success','Đăng kí tài khoản thành công')</script>";
+            echo "<script>window.location = '/duan1_Nike/index.php?layout=account'</script>";
         }
         
     }
+
+    
 
 ?>

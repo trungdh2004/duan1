@@ -38,7 +38,7 @@
               </div>
               <div class="box-message-chat-form">
                 <form action="" id="form-chat">
-                  <input type="text" name="content" id="input-chat"/>
+                  <input type="text" name="content" id="input-chat" required/>
                   <button id="btn-chat"><i class="fa-regular fa-paper-plane" ></i></button>
                 </form>
               </div>

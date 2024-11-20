@@ -31,7 +31,7 @@
 
           <div class="message-form">
             <form action="" class="" id="form-chat">
-                <input type="text" placeholder="Mời nhập ..." name="content" id="input-content"> 
+                <input type="text" placeholder="Mời nhập ..." name="content" id="input-content" required> 
                 <button type="submit" id="btn-send"><i class="fa-regular fa-paper-plane"></i></button>
             </form>
           </div>

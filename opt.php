@@ -15,11 +15,10 @@
   <body>
     <div class="box-content">
       <div class="box-account-otp">
-        <h3>Mời bạn nhập mã OTP</h3>
-        <span>Mã OTP đã gửi về mail đăng kí tài khoản</span>
-        <input type="text" maxlength="5" />
-        <p></p>
-        <button class="btn btn-dark">Nhập</button>
+        <form action="./vnpay/demoMoMo.php" method="post">
+          <input type="text" name="amount" />
+          <button type="submit">submit</button>
+        </form>
       </div>
     </div>
   </body>

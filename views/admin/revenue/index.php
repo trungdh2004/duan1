@@ -4,6 +4,8 @@
   $countOrderDay = getCountOrderDay();
   $queryProOrder = getTop5OrderProRevenue();
   $queryUserOrder = getTop5OrderUserRevenue();
+
+  var_dump($revenuDay['sum'] !=null? $revenuDay['sum'] : '0');
 ?>
 <div class="box-revenue">
     <h2 class="title">
@@ -31,7 +33,7 @@
             </div>
             <div class="box-revenue-body-grid-item-text">
                 <p>Tổng số doanh thu hôm nay</p>
-                <span>+ <?=currency_format($revenuDay['sum']) ?></span>
+                <span>+ <?=$revenuDay['sum'] !=null? currency_format( $revenuDay['sum'] ) : '0'?></span>
             </div>
           </div>
           <div class="box-revenue-body-grid-item">

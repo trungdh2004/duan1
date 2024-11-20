@@ -1304,3 +1304,6 @@ input[type="number"] {
 }
 
 /* b */
+.carousel-control-prev {
+  z-index: 0;
+}

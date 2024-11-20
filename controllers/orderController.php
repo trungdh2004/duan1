@@ -23,6 +23,7 @@
 
     // cập nhập đã thanh toán
     function updateOrderPaySuccess($orderId) {
+
         $sql = "UPDATE `orders` SET `isPay`='1' WHERE id = '$orderId'";
         $resutl = prepareSql($sql);
         return $resutl;
@@ -104,7 +105,7 @@
 
 // Tổng doanh thu 
     function getSumRevenueALL() {
-        $sql = "SELECT SUM(total_money) as 'sum' FROM `orders`";
+        $sql = "SELECT SUM(total_money) as 'sum' FROM `orders` where status = '2'";
         $result = querySql($sql);
         return $result->fetch();
     }
@@ -112,9 +113,9 @@
 // Tổng doanh thu homo nay
     function getSumRevenueDay() {
         $date = date("Y-m-d");
-        $sql = "SELECT SUM(total_money) as 'sum' FROM `orders` WHERE createdAt LIKE '%$date%'";
-        $result = querySql($sql);
-        return $result->fetch();
+        $sql = "SELECT SUM(total_money) as 'sum' FROM `orders` WHERE status = '2' and createdAt LIKE '%$date%'";
+        $result = querySql($sql) ->fetch();
+        return $result;
     }
 
 // Tổng số đơn hàng
@@ -128,14 +129,14 @@
     // top 5 sản phẩm nhiều doanh thu nhất
 
     function getTop5OrderProRevenue() {
-        $sql = "SELECT sum(total_money) as 'sum',COUNT(productId) as 'count', product.title as 'title' FROM `orderpro` JOIN product on product.id = orderpro.productId GROUP BY productId ORDER BY sum DESC LIMIT 0,5";
+        $sql = "SELECT sum(orderpro.total_money) as 'sum',COUNT(productId) as 'count', product.title as 'title' FROM `orderpro` JOIN product on product.id = orderpro.productId JOIN orders on orders.id = orderpro.ordersId  GROUP BY productId ORDER BY sum DESC LIMIT 0,5";
         $result = querySql($sql);
         return $result -> fetchAll();
     }
 
     // top 5 người có doanh thu cao nhất
     function getTop5OrderUserRevenue() {
-        $sql = "SELECT SUM(total_money) as 'sum' , user.lastname as 'name' FROM `orders` JOIN user on user.id = orders.userId GROUP BY userId ORDER BY sum DESC LIMIT 0,5";
+        $sql = "SELECT SUM(total_money) as 'sum' , user.lastname as 'name' FROM `orders` JOIN user on user.id = orders.userId where orders.status = '2'  GROUP BY userId ORDER BY sum DESC LIMIT 0,5";
         $result = querySql($sql);
         return $result -> fetchAll();
     }

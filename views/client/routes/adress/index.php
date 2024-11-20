@@ -41,7 +41,7 @@
 <?php 
   if(isset($_POST['btn-delete-adress'])) {
     $idAdress = $_POST['btn-delete-adress'];
-    $sql = "DELETE FROM `adress` WHERE id = $idAdress";
+    $sql = "UPDATE `adress` SET `deleted`='1' WHERE id = $idAdress";
     $result = prepareSql($sql);
     echo "<script>window.location = '/duan1_Nike/index.php?act=adress'</script>";
   }

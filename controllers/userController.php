@@ -16,6 +16,13 @@
         return $query_sql;
     }
 
+    // check user cùng tên tài khoản
+    function checkUsername($username) {
+        $sql = "SELECT * FROM `user` WHERE username='$username'";
+        $query_sql = querySql($sql) -> fetch();
+        return $query_sql;
+    }
+
     // cập nhập tài khoản 
 
     function  updateInfo($fistname,$lastname,$email,$password,$image,$id,$fullname)  {
@@ -86,7 +93,7 @@
 
     // thêm địa chỉ
     function getAdress($userId) {
-        $sql = "SELECT * FROM `adress` WHERE userId = $userId";
+        $sql = "SELECT * FROM `adress` WHERE userId = $userId and deleted = '0'";
 
         $result = querySql($sql);
         return $result->fetchAll();

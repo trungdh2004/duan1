@@ -20,32 +20,24 @@ function execPostRequest($url, $data)
     curl_close($ch);
     return $result;
 }
-function payMoMo($price) {
+
+function payMoMo($price,$cartId,$id) {
+    
+
+    $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
 
-$endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+    $partnerCode = 'MOMOBKUN20180529';
+    $accessKey = 'klm05TvNBzhg7h7j';
+    $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+    $orderInfo = "Thanh toán qua MoMo";
+    // $amount = "10000";
+    $orderId = time()."";
+    $redirectUrl = "http://localhost/duan1_Nike/index.php?act=order&idCart=$cartId&idOrder=".$id;
+    $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+    $extraData = "";
 
-
-$partnerCode = 'MOMOBKUN20180529';
-$accessKey = 'klm05TvNBzhg7h7j';
-$secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-$orderInfo = "Thanh toán qua MoMo";
-$amount = $price;
-$orderId = time()."";
-$redirectUrl = "http://localhost/duan1_Nike/thank.php";
-$ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
-$extraData = "";
-
-
-    // $partnerCode = $_POST["partnerCode"];
-    // $accessKey = $_POST["accessKey"];
-    // $serectkey = $_POST["secretKey"];
-    // $orderId = $_POST["orderId"]; // Mã đơn hàng
-    // $orderInfo = $_POST["orderInfo"];
-    // $amount = $_POST["amount"];
-    // $ipnUrl = $_POST["ipnUrl"];
-    // $redirectUrl = $_POST["redirectUrl"];
-    // $extraData = $_POST["extraData"];
+    $amount = $price;
 
     $requestId = time() . "";
     $requestType = "payWithATM";
@@ -69,11 +61,7 @@ $extraData = "";
     $result = execPostRequest($endpoint, json_encode($data));
     $jsonResult = json_decode($result, true);  // decode json
 
-    //Just a example, please check more in there
+    return $jsonResult['payUrl'];
 
-    var_dump($jsonResult);
 }
-
-payMoMo(300000);
-    // header('Location: ' . $jsonResult['payUrl']);
 ?>

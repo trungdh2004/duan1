@@ -134,15 +134,15 @@
                   <td><?=$item['quantily']?></td>
                   <td><?=currency_format($item['price']*$item['quantily'])?></td>
                   <td><?=$item['createdAt']?></td>
-                  <td><p class="<?php 
+                  <td><p class="status <?php 
                     if($item['status'] == '0') {
-                      echo "info";
+                      echo "bg-warning";
                     }
                     else if($item['status'] == '1') {
-                      echo "ship";
+                      echo "bg-info";
                     }
                     else {
-                      echo "success";
+                      echo "bg-success";
 
                     }
                   ?>"><?php 

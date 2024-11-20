@@ -11,9 +11,9 @@
           <th scope="col" style="width: 100px">Lượt xem</th>
           <th scope="col" style="width: 100px">Số lượng</th>
           <th scope="col" style="width: 150px">Ngày tạo</th>
-          <th scope="col" style="width:180px;">Các size</th>
+          <th scope="col" style="width:160px;">Các size</th>
           <th scope="col" style="width:180px;">Các màu</th>
-          <th scope="col" style="width:100px;">Khôi phục</th>
+          <th scope="col" style="width:120px;">Khôi phục</th>
         </tr>
       </thead>
       <tbody>

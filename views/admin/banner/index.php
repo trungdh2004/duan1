@@ -196,6 +196,7 @@
     .then(res => res.json())
     .then(res => {
       if(res == 1) {
+        alert("cập nhập thành công");
         window.location.reload();
       }
       else {

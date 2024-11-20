@@ -15,6 +15,7 @@
     include "./controllers/orderController.php";
     include "./controllers/commentController.php";
     include "./vnpay/demoVnpay.php";
+    include "./vnpay/demoMoMo.php";
     include "./controllers/toast.php";
 
     $sessionUserId = null;

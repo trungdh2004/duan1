@@ -1,4 +1,5 @@
 <?php 
+    $cartUserSesstion="";
     if($sessionUserId) {
         $userInfoSesstion = get_one_pdo("user",$sessionUserId);
         $cartUserSesstion = getCartUser($sessionUserId);

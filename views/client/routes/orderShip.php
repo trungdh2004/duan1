@@ -48,38 +48,43 @@
               </div>
               <div class="box-purchase-right-list-items-footer">
                 <div class="box-purchase-right-list-items-footer-total">
-                <table>
-                    <tr>
-                      <td>Tổng :</td>
-                      <td><?=currency_format($item['total_money']);?></td>
-                    </tr>
-                    <tr>
-                      <td>Thanh toán :</td>
-                      <td>- <?php 
-                        if($item['isPay'] == 1) {
-                          echo currency_format($item['total_money']);
-                        } else {
-                          echo '0đ';
-                        }
-                      ?></td>
-                    </tr>
-                    <tr>
-                      <td>Thành tiền :</td>
-                      <td><b>
-                      <?php 
-                        if($item['isPay'] == 1) {
-                          echo '0đ';
-                        } else {
-                          echo currency_format($item['total_money']);
+                  <span>Thời gian đặt: <?php
+                            $date=date_create($item['createdAt']);
+                            echo date_format($date,"H:i:s - d/m/Y");
+                          ;?>
+                  </span>
+                  <table>
+                      <tr>
+                        <td>Tổng :</td>
+                        <td><?=currency_format($item['total_money']);?></td>
+                      </tr>
+                      <tr>
+                        <td>Thanh toán :</td>
+                        <td>- <?php 
+                          if($item['isPay'] == 1) {
+                            echo currency_format($item['total_money']);
+                          } else {
+                            echo '0đ';
+                          }
+                        ?></td>
+                      </tr>
+                      <tr>
+                        <td>Thành tiền :</td>
+                        <td><b>
+                        <?php 
+                          if($item['isPay'] == 1) {
+                            echo '0đ';
+                          } else {
+                            echo currency_format($item['total_money']);
 
-                        }
-                      ?>
-                      </b></td>
-                    </tr>
-                  </table>
+                          }
+                        ?>
+                        </b></td>
+                      </tr>
+                    </table>
                 </div>
                 <div class="box-purchase-right-list-items-footer-button">
-                  <span>Đơn hàng đang chờ shop chấp nhận</span>
+                  <span>Đơn hàng đang được giao đến bạn</span>
                   <div>
                     <form action="" method="post">  
                       <button class="btn-success" name="btn-success-order" value="<?=$item['id']?>">Đã nhận hàng</button>

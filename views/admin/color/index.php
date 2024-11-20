@@ -35,7 +35,7 @@
                             </td>
                             <td>
                                 <form action="" method="post">
-                                    <button class="btn btn-outline-danger" name="btn-delete-color" value="<?=$color['id']?>">Xóa</button>
+                                    <button class="btn btn-outline-danger" name="btn-delete-color" value="<?=$color['id']?>" onclick="return confirm('Bạn có muốn xóa không ?')">Xóa</button>
                                 </form>
                             </td>
                         </tr>
@@ -119,7 +119,6 @@
 
     if(isset($_POST['btn-delete-color']) ){
         $id = $_POST['btn-delete-color'];
-
         $result = delete_one_pdo("color", $id);
         if($result) echo '<script>window.location="/duan1_Nike/index.php?layout=dashboard&act=color"</script>';
         

@@ -30,6 +30,44 @@
     ></script>
   </head>
   <body>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast align-items-center text-bg-danger border-0" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div class="toast-body">
+              Hello, world! This is a toast message.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+      </div>
+    </div>
+
+    <script>
+
+      const toastLiveExample = document.getElementById('liveToast')
+      const toastBody = document.querySelector(".toast-body");
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+      
+
+      
+      const handlerToast = (isType,message) => {
+        if(isType === "success") {
+          toastLiveExample.classList.remove("text-bg-danger")
+          toastLiveExample.classList.add("text-bg-success")
+          toastBody.textContent = message
+        }
+        else if (isType === "error") { 
+          toastLiveExample.classList.add("text-bg-danger")
+          toastLiveExample.classList.remove("text-bg-success")
+          toastBody.textContent = message
+        }
+
+        toastBootstrap.show()
+
+      }
+    </script>
+
+
     <div class="box-content">
 
         <?php 
@@ -55,38 +93,12 @@
         ?>
       
     </div>
-    <script>
-      (() => {
-        "use strict";
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll(".needs-validation");
 
-        // Loop over them and prevent submission
-        Array.from(forms).forEach((form) => {
-          form.addEventListener(
-            "submit",
-            (event) => {
-              if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-
-              form.classList.add("was-validated");
-            },
-            false
-          );
-        });
-      })();
-    </script>
   </body>
 </html>
 
-<?php 
-    if(isset($_POST['btn-login'])) {
 
-    }
-?>
 
 <!-- login -->
 

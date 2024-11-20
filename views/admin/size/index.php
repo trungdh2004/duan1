@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             <form action="" method="post">
-                                <button  class="btn btn-outline-danger" name="btn-delete-size" value="<?=$size['id']?>">Xóa</button>
+                                <button  class="btn btn-outline-danger" name="btn-delete-size" value="<?=$size['id']?>" onclick="return confirm('Bạn có muốn xóa không ?')">Xóa</button>
                             </form>
                         </td>
                     </tr>

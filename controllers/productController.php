@@ -1,10 +1,12 @@
 <?php 
+    // lấy tất sp chưa xóa
     function get_all_product() {
         $sql = "SELECT * FROM product where deleted = 0 order by id desc";
         $result = querySql($sql);
 
         return $result->fetchAll();
     }
+    // lấy tất sp đã xóa
 
     function getDeletedProduct() {
         $sql = "SELECT * FROM product where deleted = 1 order by id desc";

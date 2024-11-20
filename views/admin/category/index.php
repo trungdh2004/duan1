@@ -30,7 +30,7 @@
                             </td>
                             <td>
                                 <form action="" method="post">
-                                    <button class="btn btn-outline-danger" name="btn-delete-cate" value="<?=$cate['id']?>">Xóa</button>
+                                    <button class="btn btn-outline-danger" name="btn-delete-cate" value="<?=$cate['id']?>" onclick="return confirm('Bạn có muốn xóa không ?')">Xóa</button>
                                 </form>
                             </td>
                         </tr>

@@ -9,9 +9,9 @@
         $conn = pdo_get_connection();
             for($i=0;$i < 7 ; $i++) { 
                 $doituong = new stdClass;
-                $date = date('Y-m-j');
+                $date = date('Y-m-d');
                 $newdate = strtotime ( "-$i day" , strtotime ( $date ) ) ;
-                $newdate = date ( 'Y-m-j' , $newdate );
+                $newdate = date ( 'Y-m-d' , $newdate );
                 $user_sql = "SELECT COUNT(createdAt) as 'count' FROM user WHERE createdAt like '%$newdate%'";
                 $query = $conn  -> query($user_sql);
                 $result = $query -> fetchAll();
